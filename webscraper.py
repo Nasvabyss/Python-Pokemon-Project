@@ -1,12 +1,11 @@
 from selenium import webdriver;from time import time,sleep;from selenium.webdriver.chrome.options import Options;from datetime import datetime;from selenium.common.exceptions import NoSuchElementException
 options=Options()
-options.add_argument('--headless')
+options.add_argument('--headless') # Headless chrome browser
 def pokemonInfo(fileName,count,link):# sourcery skip: avoid-builtin-shadow
     """Converts link to text"""
     with open(fileName,'r',encoding='utf-8') as f:
         subDriver=webdriver.Chrome(r'C:\Program Files\PY-Drivers\chromedriver.exe',chrome_options=options)
         subDriver.get(link)
-        sleep(0.1)
         #Check if pokemon has evolution
         try:evo=sum(subDriver.find_element_by_xpath(f'/html/body/div[4]/section[4]/div/ul/li[{i+1}]/a/h3').text for i in range(9**99)if subDriver.find_element_by_xpath(f'/html/body/div[4]/section[4]/div/ul/li[{i}]/a/h3/span')==count)
         except NoSuchElementException:evo=None
@@ -16,25 +15,22 @@ def pokemonInfo(fileName,count,link):# sourcery skip: avoid-builtin-shadow
         subDriver.quit()
         return _
 if __name__ == '__main__':
-    SITE='https://www.pokemon.com/us/pokedex'
-    startsFrom=62
-    fileName=f'pokemonInfoList-{int(time())}.txt'
-    startTime=datetime.now().strftime('%H:%M:%S')
+    SITE,startsFrom,fileName,startTime='https://www.pokemon.com/us/pokedex',1,f'pokemonInfoList-{int(time())}.txt',datetime.now().strftime('%H:%M:%S')
     with open(fileName,'w',encoding='utf-8') as f:
         driver=webdriver.Chrome(r'C:\Program Files\PY-Drivers\chromedriver.exe',chrome_options=options)
         driver.get(SITE)
-        sleep(4)
-        driver.find_element_by_xpath('//*[@id="loadMore"]/span').click()
+        sleep(1)
+        driver.find_element_by_xpath('//*[@id="loadMore"]/span').click() # Click to load more
         for _ in range(15):
-            driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
-            print('Scrolling...')
-            sleep(1)
+            driver.execute_script("window.scrollTo(0,document.body.scrollHeight)") # Scroll to load more pokemon
+            print(f'Scrolling... {_}/15')
+            sleep(0.2)
         for pokemon in driver.find_element_by_class_name('pokedex-results').find_element_by_class_name('results').find_elements_by_tag_name('li'):
             count,name=pokemon.find_element_by_class_name('id').text,pokemon.find_element_by_tag_name('h5').text
             if int(count.replace('#',''))>=startsFrom:
                 [[hp,atk,defe,satk,sdef,spd],types,weaknesses]=pokemonInfo(fileName,count,pokemon.find_element_by_tag_name('a').get_attribute('href'))
-                f.write(f'{count.replace("#","")} {name:20} {atk} {defe} {satk} {sdef} {spd}{" "*8}{"|".join(types):30} {"|".join(weaknesses):30}\n')
-                print(f'Name: {name} {count}\nAtk: {atk}, Def: {defe}, SAtk: {satk}, SDef: {sdef}, Spd: {spd}\nTypes: {" ".join(types)}, Weaknesses: {" ".join(weaknesses)}')
+                f.write(f'{count.replace("#","")} {name:20} {atk:2}|{defe:2}|{satk:2}|{sdef:2}|{spd:2}{" "*8}{"|".join(types):30} {"|".join(weaknesses):30}\n')
+                print(f'Name: {name} {count}\nAtk: {atk}, Def: {defe}, SAtk: {satk}, SDef: {sdef}, Spd: {spd}\nTypes: {" ".join(types)}, Weaknesses: {" ".join(weaknesses)}') # Progress update
         driver.quit()
         f.write(f'Program has finished. {datetime.strptime(datetime.now().strftime("%H:%M:%S"),"%H:%M:%S")-datetime.strptime(startTime,"%H:%M:%S")}')
     print(f'Program has finished. ({datetime.strptime(datetime.now().strftime("%H:%M:%S"),"%H:%M:%S")-datetime.strptime(startTime,"%H:%M:%S")})')
