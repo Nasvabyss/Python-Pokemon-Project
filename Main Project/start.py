@@ -7,11 +7,11 @@ class Player():
     def setPokemons(self,pokemons):self.pokemons=pokemons
 class Pokemon():
     def __init__(self,name,count,atk,defe,satk,sdef,spd,imgPath):self.name,self.count,self.atk,self.defe,self.satk,self.sdef,self.spd,self.imgPath=name,count,atk,defe,satk,sdef,spd,imgPath
-    def evol(self):
-        pass
+    def evol(self):pass
+    def getPath(self):return self.imgPath
 charizard=Pokemon('Charizard',0,0,0,0,0,0,path('charizard.png'))
 def getStarterPokemon():
-    return charizard
+    return charizard.getPath()
 def confirmPokemon():
     pass
 def changePokemon():
