@@ -83,7 +83,7 @@ def pokemonInfo(fileName,name,count,link):
 
         # Quit the session & return information
         subDriver.quit()
-        return(stats,types,weaknesses,evolution) # TODO Choice Evolution (Get all possible evolution choices, randomize evolution)
+        return(stats,types,weaknesses,evolution)
 
 
 if __name__ == '__main__':
