@@ -104,24 +104,29 @@ if __name__ == '__main__':
             print(f'Scrolling completion: {round(currPokemon/MAX_POKEMON*100,1)}%')
         
         # Produce an Assertion Error if the program did not load the default 240 pokemon required
-        assert len(driver.find_element(By.CLASS_NAME,"results").find_elements(By.TAG_NAME,"li"))==MAX_POKEMON,f'ERROR! This program only managed to load {len(driver.find_element(By.CLASS_NAME,"results").find_elements(By.TAG_NAME,"li"))} of the {MAX_POKEMON} required pokemon, please contact the software developer.'
+        assert len(driver.find_element(By.CLASS_NAME,"results").find_elements(By.TAG_NAME,"li"))>=MAX_POKEMON,f'ERROR! This program only managed to load {len(driver.find_element(By.CLASS_NAME,"results").find_elements(By.TAG_NAME,"li"))} of the {MAX_POKEMON} required pokemon, please contact the software developer.'
         
         # Scrap the website for pokemon information to store in a file for future use
         for pokemon in driver.find_element(By.CLASS_NAME, 'results').find_elements(By.TAG_NAME,'li'):
-            count,name=int(pokemon.find_element(By.CLASS_NAME,'id').text.replace('#','')),pokemon.find_element(By.TAG_NAME,'h5').text
-            if startsFrom<=count<=MAX_POKEMON:
+            count,name=pokemon.find_element(By.CLASS_NAME,'id').text.replace('#',''),pokemon.find_element(By.TAG_NAME,'h5').text
+            if startsFrom<=int(count)<=MAX_POKEMON:
                 startedTime=time()
-                ((hp,atk,defe,satk,sdef,spd),types,weaknesses,evol)=pokemonInfo(fileName,name,count,pokemon.find_element(By.TAG_NAME,'a').get_attribute('href'))
+                (stats, types, weaknesses, evol)=pokemonInfo(fileName, name, int(count), pokemon.find_element(By.TAG_NAME, 'a').get_attribute('href'))
+                
+                # Progress update & output data to file
+                print(f'Name: {name} #{count}\nAtk: {stats[0]}, Def: {stats[1]}, SAtk: {stats[2]}, SDef: {stats[3]}, Spd: {stats[4]}\nTypes: {" ".join(types)}, Weaknesses: {" ".join(weaknesses)}, ',end='')
                 if type(evol)==list:
-                    f.write(f'{count} {name:20} {atk:2}|{defe:2}|{satk:2}|{sdef:2}|{spd:2}{" "*8}{"|".join(types):30} {"|".join(weaknesses):30} {"|".join(evol):50}\n')
-                    print(f'Name: {name} #{count}\nAtk: {atk}, Def: {defe}, SAtk: {satk}, SDef: {sdef}, Spd: {spd}\nTypes: {" ".join(types)}, Weaknesses: {" ".join(weaknesses)}, Evolutions: {" ".join(evol)}') # Progress update
+                    f.write(f'{count} {name:20} {"|".join(stats):20} {"|".join(types):40} {"|".join(weaknesses):40} {"|".join(evol):50}\n')
+                    print(f'Evolutions: {" ".join(evol)}') # Progress update
                 else:
-                    f.write(f'{count} {name:20} {atk:2}|{defe:2}|{satk:2}|{sdef:2}|{spd:2}{" "*8}{"|".join(types):30} {"|".join(weaknesses):30} {evol:50}\n')
-                    print(f'Name: {name} #{count}\nAtk: {atk}, Def: {defe}, SAtk: {satk}, SDef: {sdef}, Spd: {spd}\nTypes: {" ".join(types)}, Weaknesses: {" ".join(weaknesses)}, Evolution: {evol}') # Progress update
+                    f.write(f'{count} {name:20} {"|".join(stats):20} {"|".join(types):40} {"|".join(weaknesses):40} {evol:50}\n')
+                    print(f'Evolution: {evol}') # Progress update
                 print(f'Loaded {name} #{count}. ({round(time()-startedTime,2)}s)')
+
         # Quit the session
         driver.quit()
-        #Output the total time used, should take around 30-40 minutes to complete
+        #Output the total time used, should take around 35-40 minutes to complete
+        # Due to the nature of my fast wifi network, it only took me less than 30 minutes to complete
         f.write(f'Program has finished. {datetime.strptime(datetime.now().strftime("%H:%M:%S"),"%H:%M:%S")-datetime.strptime(startTime,"%H:%M:%S")}')
     print(f'Program has finished. ({datetime.strptime(datetime.now().strftime("%H:%M:%S"),"%H:%M:%S")-datetime.strptime(startTime,"%H:%M:%S")})')
 

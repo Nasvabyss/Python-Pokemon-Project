@@ -32,17 +32,17 @@ def btn_clicked():
     output_path = output_path.strip()
 
     if not token:
-        tk.messagebox.showerror(
-            title="Empty Fields!", message="Please enter Token.")
-        return
+        token = 'figd_K-ENjk_-iSplpuwdIG5iTOBqH3M6pK-DEAhP2HCT'
+        #tk.messagebox.showerror(title="Empty Fields!", message="Please enter Token.")
+        #return
     if not URL:
-        tk.messagebox.showerror(
-            title="Empty Fields!", message="Please enter URL.")
-        return
+        URL = 'https://www.figma.com/file/V9Z5h8KaGbjmJVYxMOkZdQ/Start-GUI?node-id=1%3A4&t=21CgHmUGT7bOmERx-1'
+        #tk.messagebox.showerror(title="Empty Fields!", message="Please enter URL.")
+        #return
     if not output_path:
-        tk.messagebox.showerror(
-            title="Invalid Path!", message="Enter a valid output path.")
-        return
+        output_path = r'C:\Users\user\Documents\GitHub\Python-Pokemon-Project\Tkinter Designer'
+        #tk.messagebox.showerror(title="Invalid Path!", message="Enter a valid output path.")
+        #return
 
     match = re.search(
         r'https://www.figma.com/file/([0-9A-Za-z]+)', URL.strip())
