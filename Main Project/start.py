@@ -58,9 +58,10 @@ def chBtn(canvas,img):
     """Change Button Algorithm"""
     print('Change Button clicked!')
     canvas.delete(img) # Delete the pokemon image
+    chargeLeft=getCharge()
     chargeLeft-=1
     # TODO
-    # Delete the image and generate a new image
+    # Regenerate a new image
     # Remove a charge from the user
     # Change the 'Charge Left' text to its approprate amount
     # If charges are 0, do not allow the user to regenerate a new pokemon
