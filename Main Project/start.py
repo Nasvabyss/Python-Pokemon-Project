@@ -40,7 +40,7 @@ class Pokemon:
 class Player:
     def __init__(self,name,pokemon1:Pokemon,pokemon2:Pokemon,pokemon3:Pokemon):pass
 
-def getPokemonCount():return '1st'
+def getPokemonCount():return ['1st','2nd','3rd']
 
 chargeLeft=3
 def getCharge():return chargeLeft
@@ -69,6 +69,7 @@ def chBtn(canvas,img):
 def generatePokemon():
     generateName=list(load(open(path('config.json')))['pokemonPaths'])[randint(0, MAX_POKEMON-1)]
     return imgCreator(generateName)
+
 if __name__ == '__main__':
     with open(fileName,'r',encoding='utf-8') as f:
         pokemons={}
@@ -82,4 +83,5 @@ if __name__ == '__main__':
             evolutions=pokemon[129:].strip().split('|')
             pokemons[count]=Pokemon(name,stats,types,weaknesses,evolutions)
             a=pokemons[count]
+
             #print(a.getName(),a.getStats(),a.getTypes(),a.getWeaknesses(),a.getEvol())
