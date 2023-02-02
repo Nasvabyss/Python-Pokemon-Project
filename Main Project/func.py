@@ -1,11 +1,18 @@
-from pathlib import Path
-def path(path):return f'{Path(__file__).parent.resolve()}/assets/{path}' #Resolve path
-# Image Creator from URLS
-from PIL import ImageTk
-from urllib.request import urlopen
-from json import load
+from json import load # For imgCreator & generatePokemon function
+from random import randint # Random evolutions choice evolutions' pokemon (For generatePokemon function)
+
+def path(path,between):
+    from pathlib import Path
+    return f'{Path(__file__).parent.resolve()}/{"/".join(between)}/{path}' #Fix path issue
+
 def imgCreator(pokemon):
-    URL=urlopen(load(open(path('config.json')))['pokemonPaths'][pokemon[0].upper()+pokemon[1:]])
+    """Turn URLS into Images"""
+    from PIL.ImageTk import PhotoImage;from urllib.request import urlopen # Image Creator from URLS
+    URL=urlopen(load(open(path('config.json',[])))['pokemonPaths'][pokemon[0].upper()+pokemon[1:]])
     DATA=URL.read()
     URL.close()
-    return ImageTk.PhotoImage(data=DATA)
+    return PhotoImage(data=DATA)
+
+def generatePokemon():
+    config=list(load(open(path('config.json',[])))['pokemonPaths'])
+    return imgCreator(config[randint(0,len(config)-1)])

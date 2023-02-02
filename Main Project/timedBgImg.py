@@ -1,5 +1,5 @@
 from tkinter import *
-import start,func
+import func
 root = Tk()
 root.geometry("1000x667")
 root.title('Learn To Code at Codemy.com')
@@ -9,9 +9,9 @@ global our_images, count
 count = -1
 
 our_images = [
-	start.generatePokemon(),
-	start.generatePokemon(),
-	start.generatePokemon(),
+	func.generatePokemon(),
+	func.generatePokemon(),
+	func.generatePokemon(),
 ]
 
 # Create a Canvas
