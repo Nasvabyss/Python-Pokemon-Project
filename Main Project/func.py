@@ -8,7 +8,11 @@ def path(path,between):
 def imgCreator(pokemon):
     """Turn URLS into Images"""
     from PIL.ImageTk import PhotoImage;from urllib.request import urlopen # Image Creator from URLS
-    URL=urlopen(load(open(path('config.json',[])))['pokemonPaths'][pokemon[0].upper()+pokemon[1:]])
+    from urllib.error import URLError
+    try:URL=urlopen(load(open(path('config.json',[])))['pokemonPaths'][pokemon[0].upper()+pokemon[1:]])
+    except URLError:
+        print('The website has been blocked by your network. Please try another network.')
+        exit()
     DATA=URL.read()
     URL.close()
     return PhotoImage(data=DATA)

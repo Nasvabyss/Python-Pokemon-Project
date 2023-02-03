@@ -30,7 +30,10 @@ class Player:
     def getPokemonCount(self)->str:return ['1st','2nd','3rd'][self.startIndex]
 
 
-def togglePokemon(button):print(button,'pressed!')
+def togglePokemon(canvas,var,button):
+    print(button,'pressed!')
+    randomImage=generatePokemon()
+    canvas.itemconfig(var,image=randomImage)
 
 
 # STORE POKEMON INFO IN POKEMONS VARIABLE
@@ -73,14 +76,14 @@ canvas.create_text(60,38,anchor='nw',text=f'Choose your {player.getPokemonCount(
 # Create pokemon image
 pokemonImg=generatePokemon()
 img=canvas.create_image(298,200,image=pokemonImg)
-
+canvas.itemconfig()
 # Create 'Confirm Pokemon' button
 coBtn=PhotoImage(file=path('coPoImg.png',['assets','startGUI']))
-Button(image=coBtn,borderwidth=0,highlightthickness=0,command=lambda:togglePokemon('Confirm Pokemon'),relief='flat').place(x=60,y=325,width=193,height=45)
+Button(image=coBtn,borderwidth=0,highlightthickness=0,command=lambda:togglePokemon(canvas,img,'Confirm Pokemon'),relief='flat').place(x=60,y=325,width=193,height=45)
 
 # Create 'Change Pokemon' button
 chBtn=PhotoImage(file=path('chPoImg.png',['assets','startGUI']))
-Button(image=chBtn,borderwidth=0,highlightthickness=0,command=lambda:togglePokemon('Change Pokemon'),relief='flat').place(x=347,y=325,width=193,height=45)
+Button(image=chBtn,borderwidth=0,highlightthickness=0,command=lambda:togglePokemon(canvas,img,'Change Pokemon'),relief='flat').place(x=347,y=325,width=193,height=45)
 
 # Change Pokemon's charges algorithm
 canvas.create_text(397,370,anchor='nw',text=f'Charge Left: {player.getCharge()}',fill='#FFF',font=('Inter',-13))
