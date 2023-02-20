@@ -42,14 +42,8 @@ Button(image=ability_4,borderwidth=0,highlightthickness=0,command=lambda: print(
 
 # History box
 canvas.create_rectangle(0,394,600,600,fill="#D9D9D9",outline="")
-canvas.create_text(0,394,anchor="nw",text="History 1",fill="#000000",font=("Inter",-21))
-canvas.create_text(0,418,anchor="nw",text="History 2",fill="#000000",font=("Inter",-21))
-canvas.create_text(0,443,anchor="nw",text="History 3",fill="#000000",font=("Inter",-21))
-canvas.create_text(0,468,anchor="nw",text="History 4",fill="#000000",font=("Inter",-21))
-canvas.create_text(0,493,anchor="nw",text="History 5",fill="#000000",font=("Inter",-21))
-canvas.create_text(0,517,anchor="nw",text="History 6",fill="#000000",font=("Inter",-21))
-canvas.create_text(0,544,anchor="nw",text="History 7",fill="#000000",font=("Inter",-21))
-canvas.create_text(0,569,anchor="nw",text="History 8",fill="#000000",font=("Inter",-21))
+for i in range(1,10):
+    canvas.create_text(1,372.5+22.5*i,anchor="nw",text=f"History line {i}",fill="#000000",font=("Inter",-22))
 
 window.resizable(False, False)
 window.mainloop()
