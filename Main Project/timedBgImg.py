@@ -3,7 +3,6 @@ import func
 root = Tk()
 root.geometry("1000x667")
 root.title('Learn To Code at Codemy.com')
-#root.iconbitmap('c:/gui/codemy.ico')
 
 global our_images, count
 count = -1

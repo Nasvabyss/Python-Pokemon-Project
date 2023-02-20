@@ -16,7 +16,7 @@ def imgCreator(pokemon):
     from PIL.ImageTk import PhotoImage
     try:URL=urlopen(load(open(path('config.json',[])))['pokemonPaths'][pokemon[0].upper()+pokemon[1:]])
     except URLError:
-        print('The website has been blocked by your network. Please try another network.')
+        print('The website used to get the pokemon images required has been blocked by your network. Please try another network.')
         exit()
     DATA=URL.read()
     URL.close()

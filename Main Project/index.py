@@ -34,6 +34,7 @@ with open(FILE_PATH,'r',encoding='utf-8') as f:
 
 initName()
 playerName=getName()
+print('Pokemon Trainer Name:',playerName)
 
 ### Pokemon Picker GUI ###
 
