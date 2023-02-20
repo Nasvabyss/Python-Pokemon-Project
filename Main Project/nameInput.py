@@ -1,7 +1,10 @@
 from tkinter import Tk,Canvas,Entry,Text,Button,PhotoImage
 from func import path
+from time import time
+from logging import info
 def initName():
     global name
+    startTime=time()
     def setName(n):
         global name
         name=n
@@ -32,6 +35,7 @@ def initName():
 
     # Settings
     nameGUI.resizable(False,False)
+    info(f'Name GUI has successfully started. ({time()-startTime}ms)')
     nameGUI.mainloop()
 
 # Get username
