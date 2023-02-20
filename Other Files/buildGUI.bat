@@ -1,2 +1,2 @@
-python -u "c:\Users\user\Documents\GitHub\Python-Pokemon-Project\Tkinter Designer\gui\gui.py"
+python -u "c:\Users\aaron\Documents\GitHub\Python-Pokemon-Project\Tkinter Designer\gui\gui.py"
 PAUSE
