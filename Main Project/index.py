@@ -2,6 +2,7 @@ from tkinter import Tk, Canvas, Button, PhotoImage # For GUI
 from func import path,imgCreator,generatePokemon
 from datetime import datetime # Display startup time of program
 from classes import Pokemon,Player
+from nameInput import initName,getName
 startTime=datetime.now().strftime('%H:%M:%S')
 ### INIT ###
 chargesLeft=3
@@ -29,6 +30,10 @@ with open(FILE_PATH,'r',encoding='utf-8') as f:
         a=pokemons[count]
 ### INIT ###
 
+# Player Name GUI
+
+initName()
+playerName=getName()
 
 ### Pokemon Picker GUI ###
 
