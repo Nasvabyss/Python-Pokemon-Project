@@ -4,6 +4,7 @@ from time import time  # Display startup time of program
 from func import path
 from classes import Pokemon
 import logging
+from battleGUI import battleGUI
 logging.basicConfig(level=logging.INFO)
 ### INIT ###
 chargesLeft = 3
@@ -29,7 +30,8 @@ del startTime
 
 # Player Name GUI
 
-initName()
-playerName=getName()
-logging.info('Pokemon Trainer Name:',playerName)
-startGUI(playerName, time(), pokemons)
+# initName()
+# playerName=getName()
+# logging.info('Pokemon Trainer Name:',playerName)
+# startGUI(playerName, time(), pokemons)
+battleGUI()
