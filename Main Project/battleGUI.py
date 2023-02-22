@@ -23,28 +23,28 @@ def battleGUI():
 
     # HP Display
     canvas.create_text(228, 61, anchor="nw", text="100/100",
-                       fill="#0c38c8", font=("Inter", -30))
+                       fill="#040243", font=("Inter", -30))
     canvas.create_text(228, 27, anchor="nw", text="Your HP:",
-                       fill="#0c38c8", font=("Inter", -28))
+                       fill="#000", font=("Inter", -28))
     canvas.create_text(228, 153, anchor="nw", text="100/100",
-                       fill="#0c38c8", font=("Inter", -30))
+                       fill="#040243", font=("Inter", -30))
     canvas.create_text(228, 119, anchor="nw", text="Enemy HP:",
-                       fill="#0c38c8", font=("Inter", -28))
+                       fill="#000", font=("Inter", -28))
 
     # Ability 1 Button
-    Button(text='Ability 1',font=("Inter",22),bg='#607EEB',fg="#fff",borderwidth=0, highlightthickness=0,command=lambda: print(
+    Button(text='Ability 1',font=("Inter",22),bg='#6383F6',fg="#fff",borderwidth=0, highlightthickness=0,command=lambda: print(
         "Ability 1 used!",), relief="flat").place(x=5, y=217, width=290, height=80)
 
     # Ability 2 Button
-    Button(text='Ability 2',font=("Inter",22),bg='#607EEB',fg="#fff", borderwidth=0, highlightthickness=0, command=lambda: print(
+    Button(text='Ability 2',font=("Inter",22),bg='#6383F6',fg="#fff", borderwidth=0, highlightthickness=0, command=lambda: print(
         "Ability 2 used!"), relief="flat").place(x=305, y=217, width=290, height=80)
 
     # Ability 3 Button
-    Button(text='Ability 3',font=("Inter",22),bg='#607EEB',fg="#fff", borderwidth=0, highlightthickness=0, command=lambda: print(
+    Button(text='Ability 3',font=("Inter",22),bg='#6383F6',fg="#fff", borderwidth=0, highlightthickness=0, command=lambda: print(
         "Ability 3 used!"), relief="flat").place(x=5, y=309, width=290, height=80)
 
     # Ability 4 Button
-    Button(text='Ability 4',font=("Inter",22),bg='#607EEB',fg="#fff", borderwidth=0, highlightthickness=0, command=lambda: print(
+    Button(text='Ability 4',font=("Inter",22),bg='#6383F6',fg="#fff", borderwidth=0, highlightthickness=0, command=lambda: print(
         "Ability 4 used!"), relief="flat").place(x=305, y=309, width=290, height=80)
 
     # History box
