@@ -36,6 +36,8 @@ def pokemonInfo(fileName,name,count,link):
 
         # Get pokemon's types & weaknesses
         pokemonAttr=subDriver.find_element(By.CLASS_NAME,'pokedex-pokemon-attributes').find_elements(By.TAG_NAME,'div')
+
+        # Unpacking list
         (types,weaknesses)= [
             [
                 count.text for count in pokemonAttr[counter].find_element(

@@ -34,4 +34,5 @@ del startTime
 # playerName=getName()
 # logging.info('Pokemon Trainer Name:',playerName)
 # startGUI(playerName, time(), pokemons)
+# logging.info('Player has finished choosing their pokemon.')
 battleGUI()
