@@ -4,11 +4,12 @@ from time import sleep, time
 
 from selenium import webdriver
 from selenium.common.exceptions import ElementNotInteractableException,NoSuchElementException
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
-options=Options()
+options = webdriver.ChromeOptions()
+options.add_argument('--ignore-certificate-errors')
+options.add_argument('--ignore-ssl-errors')
 options.add_argument('--headless') # Headless chrome browser
 MAX_POKEMON=240
 
