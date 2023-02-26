@@ -24,7 +24,7 @@ with open(FILE_PATH, 'r', encoding='utf-8') as f:
         weaknesses = pokemon[74:128].strip().split('|')
         evolutions = pokemon[129:].strip().split('|')
         pokemons[count] = Pokemon(name, stats, types, weaknesses, evolutions)
-logging.info(f'All Pokemon has been successfully initalized! ({time()-startTime}ms)')
+logging.info(f'All Pokemon has been successfully initalized! ({time()-startTime}s)')
 del startTime
 ### INIT ###
 
