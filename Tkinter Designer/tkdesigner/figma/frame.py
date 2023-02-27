@@ -99,7 +99,6 @@ class Frame(Node):
 
     @property
     def children(self):
-        # TODO: Convert nodes to Node objects before returning a list of them.
         return self.node.get("children")
 
     def color(self) -> str:

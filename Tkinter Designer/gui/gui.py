@@ -32,20 +32,17 @@ def btn_clicked():
     output_path = output_path.strip()
 
     if not token:
-        # tk.messagebox.showerror(
-        #     title="Empty Fields!", message="Please enter Token.")
-        # return
-        token = 'figd_K-ENjk_-iSplpuwdIG5iTOBqH3M6pK-DEAhP2HCT'
+        tk.messagebox.showerror(
+            title="Empty Fields!", message="Please enter Token.")
+        return
     if not URL:
-        # tk.messagebox.showerror(
-        #     title="Empty Fields!", message="Please enter URL.")
-        # return
-        URL = 'https://www.figma.com/file/V9Z5h8KaGbjmJVYxMOkZdQ/Start-GUI?node-id=0%3A1&t=eopfg0aHqzKdMIeJ-0'
+        tk.messagebox.showerror(
+            title="Empty Fields!", message="Please enter URL.")
+        return
     if not output_path:
-        output_path = r'C:\Users\aaron\Documents\GitHub\Python-Pokemon-Project\Tkinter Designer'
-        # tk.messagebox.showerror(
-        #     title="Invalid Path!", message="Enter a valid output path.")
-        # return
+        tk.messagebox.showerror(
+            title="Invalid Path!", message="Enter a valid output path.")
+        return
 
     match = re.search(
         r'https://www.figma.com/file/([0-9A-Za-z]+)', URL.strip())
@@ -84,13 +81,6 @@ def select_path():
     output_path = tk.filedialog.askdirectory()
     path_entry.delete(0, tk.END)
     path_entry.insert(0, output_path)
-
-
-def know_more_clicked(event):
-    instructions = (
-        "https://github.com/ParthJadhav/Tkinter-Designer/"
-        "blob/master/docs/instructions.md")
-    webbrowser.open_new_tab(instructions)
 
 
 def make_label(master, x, y, h, w, *args, **kwargs):
@@ -182,12 +172,6 @@ info_text = tk.Label(
     font=("Georgia", int(16.0)))
 
 info_text.place(x=27.0, y=200.0)
-
-know_more = tk.Label(
-    text="Click here for instructions",
-    bg="#3A7FF6", fg="white", cursor="hand2")
-know_more.place(x=27, y=400)
-know_more.bind('<Button-1>', know_more_clicked)
 
 generate_btn_img = tk.PhotoImage(file=ASSETS_PATH / "generate.png")
 generate_btn = tk.Button(

@@ -4641,7 +4641,7 @@
             ]
         }
     },
-    "Nidoran♀ (female)": {
+    "Nidoran♀": {
         "levelUp": [
             {
                 "name": "Poison Sting",
@@ -5294,7 +5294,7 @@
             ]
         }
     },
-    "Nidoran♂ (male)": {
+    "Nidoran♂": {
         "levelUp": [
             {
                 "name": "Poison Sting",
@@ -13773,7 +13773,7 @@
             ]
         }
     },
-    "Farfetch'd": {
+    "Farfetch’d": {
         "levelUp": [
             {
                 "name": "Peck",

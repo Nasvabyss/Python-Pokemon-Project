@@ -53,11 +53,10 @@ def togglePokemon(button):
     info(f'The user has pressed the {button} button')
     if button.lower() == 'confirm':  # Check if user pressed the confirm button
         # Append pokemon object to player
-        player.pokemons.append(pokemonList[currentPokemonCount])
+        player.pokemons.append(pokemonList[currentPokemonCount+1])
         player.startIndex += 1  # Increment the index by 1
         if player.startIndex == 3:  # If they have chosen 3 pokemon
             del player.startIndex, player.chargesLeft  # Delete useless variables
-            info('Player has successfully chosen their 3 pokemon.')
             return pokemonPicker.destroy()  # Exit the GUI
     elif button.lower() == 'change':
         if player.chargesLeft <= 0:
@@ -75,3 +74,6 @@ def changePokemon():
     global currentPokemonCount, generatedPokemon
     currentPokemonCount, generatedPokemon = generatePokemon()
     canvas.itemconfig(pokemonImg, image=generatedPokemon)
+
+def getPlayer():
+    return player

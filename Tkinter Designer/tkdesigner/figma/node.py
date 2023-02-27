@@ -39,7 +39,6 @@ class Document(Node):
 
     @property
     def children(self):
-        # TODO: Convert nodes to Node objects before returning a list of them.
         return self.node.get("children")
 
 
@@ -49,7 +48,6 @@ class Canvas(Node):
 
     @property
     def children(self):
-        # TODO: Convert nodes to Node objects before returning a list of them.
         return self.node.get("children")
 
     @property
@@ -84,10 +82,8 @@ class Slice(Node):
 
     @property
     def size(self):
-        # TODO: Native conversion
         return self.node.get("size")
 
     @property
     def relative_transform(self):
-        # TODO: Native conversion
         return self.node.get("relativeTransform")
