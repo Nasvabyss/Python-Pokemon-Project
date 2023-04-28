@@ -55,8 +55,5 @@ playerName = getName()
 logging.info(f'Pokemon Trainer Name: {playerName}')
 startGUI(playerName, time(), pokemons)
 player=getPlayer()
-# player = Player('John Doe')
-# player.pokemons = [pokemons[1], pokemons[2], pokemons[3]]
-logging.info(
-    f'Player {player.name} has chosen {player.pokemons[0].name}, {player.pokemons[1].name}, {player.pokemons[2].name} as their pokemons.')
+logging.info(f'Player {player.name} has chosen {player.pokemons[0].name}, {player.pokemons[1].name}, {player.pokemons[2].name} as their pokemons.')
 battleGUI(player)

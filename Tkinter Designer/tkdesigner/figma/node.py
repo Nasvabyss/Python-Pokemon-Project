@@ -1,89 +1,43 @@
 class Node:
-    def __init__(self, node: dict):
-        self.node = node
-
+    def __init__(self,node):self.node=node
     @property
-    def id(self) -> str:
-        return self.node.get("id")
-
+    def id(self)->str:return self.node.get('id')
     @property
-    def name(self) -> str:
-        return self.node.get("name")
-
+    def name(self)->str:return self.node.get('name')
     @property
-    def visible(self) -> bool:
-        """Whether or not the node is visible on the canvas.
-        """
-        return self.node.get("visible", True)
-
+    def visible(self)->bool:'''Whether or not the node is visible on the canvas.'''
+    return self.node.get('visible',True)
     @property
-    def type(self) -> str:
-        return self.node.get("type")
-
+    def type(self)->str:return self.node.get('type')
     @property
-    def plugin_data(self):
-        return self.node.get("pluginData")
-
+    def plugin_data(self):return self.node.get('pluginData')
     @property
-    def shared_plugin_data(self):
-        return self.node.get("sharedPluginData")
-
-    def get(self, key, default=None):
-        return self.node.get(key, default)
-
-
+    def shared_plugin_data(self):return self.node.get('sharedPluginData')
+    def get(self,key,default=None):return self.node.get(key,default)
 class Document(Node):
-    def __init__(self, node, root="window"):
+    def __init__(self,node,root='window'):
         super().__init__(node)
-        self.root = root
-
+        self.root=root
     @property
-    def children(self):
-        return self.node.get("children")
-
-
+    def children(self):return self.node.get('children')
 class Canvas(Node):
-    def __init__(self, node):
-        super().__init__(node)
-
+    def __init__(self,node):super().__init__(node)
     @property
-    def children(self):
-        return self.node.get("children")
-
+    def children(self):return self.node.get('children')
     @property
-    def background_color(self):
-        return self.node.get("backgroundColor")
-
+    def background_color(self):return self.node.get('backgroundColor')
     @property
-    def prototype_start_node_id(self) -> str:
-        return self.node.get("prototypeStartNodeID")
-
+    def prototype_start_node_id(self)->str:return self.node.get('prototypeStartNodeID')
     @property
-    def export_settings(self):
-        return self.node.get("exportSettings")
-
-    def generate(self):
-        return ""
-
-
+    def export_settings(self):return self.node.get('exportSettings')
+    def generate(self):return''
 class Slice(Node):
-    def __init__(self, node):
-        super().__init__(node)
-
+    def __init__(self,node):super().__init__(node)
     @property
-    def export_settings(self):
-        # TODO: Native conversion
-        return self.node.get("exportSettings")
-
+    def export_settings(self):return self.node.get('exportSettings')
     @property
-    def absolute_bounding_box(self):
-        # TODO: Native conversion
-        return self.node.get("absoluteBoundingBox")
-
+    def absolute_bounding_box(self):return self.node.get('absoluteBoundingBox')
     @property
-    def size(self):
-        return self.node.get("size")
-
+    def size(self):return self.node.get('size')
     @property
-    def relative_transform(self):
-        return self.node.get("relativeTransform")
+    def relative_transform(self):return self.node.get('relativeTransform')

@@ -36,8 +36,7 @@ def battleGUI(player):
     window = Tk()
     window.geometry('600x600')
     window.configure(bg='#FFFFFF')
-    canvas = Canvas(window, bg='#FFFFFF', height=600, width=600,
-                    bd=0, highlightthickness=0, relief='ridge')
+    canvas = Canvas(window, bg='#FFFFFF', height=600, width=600,bd=0, highlightthickness=0, relief='ridge')
     canvas.place(x=0, y=0)
 
     # Background
@@ -45,8 +44,7 @@ def battleGUI(player):
     canvas.create_image(300, 300, image=background)
 
     # Render pokemon images
-    playerPokemonImg = flipImg(imgCreator(
-        playerPokemons[playerPokeCount-1].name, True))
+    playerPokemonImg = flipImg(imgCreator(playerPokemons[playerPokeCount-1].name, True))
     playerPokemonId = canvas.create_image(107, 107, image=playerPokemonImg)
     compPokemonImg = imgCreator(compPokemons[compPokeCount-1].name)
     compPokemonId = canvas.create_image(492, 107, image=compPokemonImg)
@@ -58,10 +56,8 @@ def battleGUI(player):
                        fill='#000', font=('Inter', -28))
     # HP variables
     hp = {
-        'player': canvas.create_text(228, 61, anchor='nw', text='100/100',
-                                     fill='#040243', font=('Inter', -30)),
-        'comp': canvas.create_text(228, 153, anchor='nw', text='100/100',
-                                   fill='#040243', font=('Inter', -30))
+        'player': canvas.create_text(228, 61, anchor='nw', text='100/100', fill='#040243', font=('Inter', -30)),
+        'comp': canvas.create_text(228, 153, anchor='nw', text='100/100',fill='#040243', font=('Inter', -30))
     }
 
     # Ability Buttons
@@ -80,9 +76,7 @@ def battleGUI(player):
 
     # History box
     canvas.create_rectangle(0, 394, 600, 600, fill='#D9D9D9', outline='')
-    history = [
-        canvas.create_text(1, 372.5 + 22.5 * i, anchor='nw', text=f'History line {i}',
-                           fill='#000000', font=('Inter', -22))for i in range(1, 10)
+    history = [canvas.create_text(1, 372.5 + 22.5 * i, anchor='nw', text=f'History line {i}', fill='#000000', font=('Inter', -22))for i in range(1, 10)
     ]
     window.resizable(False, False)
 
@@ -102,10 +96,8 @@ def useAbility(no: int):
     # Player damage algorithm
     dmgDealt = int(playerAbilities[playerPokeCount-1][no-1]['power']) + randint(0, int(playerPokemons[playerPokeCount-1].stats[1])*int(
         playerPokemons[playerPokeCount-1].stats[3])) if random() < int(playerAbilities[playerPokeCount-1][no-1]['accuracy'])/100 else 0
-    info(
-        f"(Player) {playerPokemons[playerPokeCount-1].name}'s {playerAbilities[playerPokeCount-1][no-1]['name']} dealt {dmgDealt} dmg!")
-    historyUpdate(
-        f"(Player) {playerPokemons[playerPokeCount-1].name}'s {playerAbilities[playerPokeCount-1][no-1]['name']} dealt {dmgDealt} dmg!")
+    info(f"(Player) {playerPokemons[playerPokeCount-1].name}'s {playerAbilities[playerPokeCount-1][no-1]['name']} dealt {dmgDealt} dmg!")
+    historyUpdate(f"(Player) {playerPokemons[playerPokeCount-1].name}'s {playerAbilities[playerPokeCount-1][no-1]['name']} dealt {dmgDealt} dmg!")
     compCurrHp = int(canvas.itemcget(
         hp['comp'], 'text').split('/')[0])-dmgDealt
     # If computer hp goes below 0
@@ -116,8 +108,7 @@ def useAbility(no: int):
             f'(Comp) {compPokemons[compPokeCount-1].name} has fainted.')
         if compPokeCount >= 3:
             gameOver = True
-            canvas.itemconfig(
-                hp['comp'], text=f"0/{int(canvas.itemcget(hp['comp'], 'text').split('/')[1])}")
+            canvas.itemconfig(hp['comp'], text=f"0/{int(canvas.itemcget(hp['comp'], 'text').split('/')[1])}")
             info('(Comp) Computer has no usable pokemon. Player wins!')
             return historyUpdate('(Comp) Computer has no usable pokemon. Player wins!')
         compPokeCount += 1  # Increase counter by 1
@@ -133,8 +124,7 @@ def useAbility(no: int):
     if random() < int(compAbilities[compPokeCount-1][randomAbility-1]['accuracy'])/100:
         dmgDealt = int(compAbilities[compPokeCount-1][randomAbility-1]['power']) + randint(0, int(compPokemons[compPokeCount-1].stats[1])*int(
             compPokemons[compPokeCount-1].stats[3]))
-    else:
-        dmgDealt = 0
+    else:dmgDealt = 0
     info(f"(Comp) {compPokemons[compPokeCount-1].name}'s {compAbilities[compPokeCount-1][randomAbility-1]['name']} dealt {dmgDealt} dmg!")
     historyUpdate(
         f"(Comp) {compPokemons[compPokeCount-1].name}'s {compAbilities[compPokeCount-1][randomAbility-1]['name']} dealt {dmgDealt} dmg!")
@@ -148,8 +138,7 @@ def useAbility(no: int):
             f'(Player) {playerPokemons[playerPokeCount-1].name} has fainted.')
         if playerPokeCount >= 3:
             gameOver = True
-            canvas.itemconfig(
-                hp['player'], text=f"0/{int(canvas.itemcget(hp['player'], 'text').split('/')[1])}")
+            canvas.itemconfig(hp['player'], text=f"0/{int(canvas.itemcget(hp['player'], 'text').split('/')[1])}")
             info('(Player) Player has no usable pokemon. Computer wins!')
             return historyUpdate('(Player) Player has no usable pokemon. Computer wins!')
         playerPokeCount += 1  # Increase counter by 1
@@ -169,14 +158,12 @@ def initPokemon(no: int, trainer: str):  # sourcery skip: remove-pass-elif, swit
         # Set current hp to max hp
         playerCurrHp = int(playerPokemons[no-1].stats[0])*100
         # Update hp text
-        canvas.itemconfig(
-            hp['player'], text=f'{playerCurrHp}/{playerCurrHp}')
+        canvas.itemconfig(hp['player'], text=f'{playerCurrHp}/{playerCurrHp}')
         canvas.update()
         
     elif trainer == 'comp':
         compCurrHp = int(compPokemons[no-1].stats[0])*100
-        canvas.itemconfig(
-            hp['comp'], text=f'{compCurrHp}/{compCurrHp}')
+        canvas.itemconfig(hp['comp'], text=f'{compCurrHp}/{compCurrHp}')
         canvas.update()
 
 
